@@ -1,17 +1,24 @@
-import { memo, useMemo, useState } from "react"
+/**
+ * ! Use React.memo when props are primitive(string, boolean, number, etc) and use useMemo when props are object, array, function becasue for each render those create new instance or referrance and lost previous reference. useMemo memorized and provide exact same referance until the depency is changed. Don't use useMemo for a function that return primitive value.Best usecase can be filter data, costly calculation etc
+ */
+
+import React, { memo, useMemo, useState } from "react"
 import "./App.css"
 
 type PropType = {
   params: {
     color: string
   }
+  onClick: (event: React.MouseEvent<HTMLDivElement>) => void
 }
 
-const Swamp = ({ params }: PropType) => {
+const Swamp = ({ params, onClick }: PropType) => {
   console.log("swamp")
 
   return (
     <div
+      role="button"
+      onClick={onClick}
       style={{
         width: "100px",
         height: "100px",
@@ -41,7 +48,7 @@ function App() {
       <button onClick={() => setColor(color === "green" ? "orange" : "green")}>
         Color Change
       </button>
-      <MemoedSwap params={memoedColor} />
+      <MemoedSwap params={memoedColor} onClick={() => {}} />
     </div>
   )
 }
