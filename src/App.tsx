@@ -1,5 +1,11 @@
 /**
- * ! Use React.memo when props are primitive(string, boolean, number, etc) and use useMemo when props are object, array, function becasue for each render those create new instance or referrance and lost previous reference. useMemo memorized and provide exact same referance until the depency is changed. Don't use useMemo for a function that return primitive value.Best usecase can be filter data, costly calculation etc
+ *
+ * ? React.memo(render if the props changed) should use when props are primitive, UseCallback and useMemo works with referencial things like object, array, function. Use useMemo(Returns a memoized value) when a calculation is expensive like fiter extensive data, search, sort etc. use useCallabck(Returns a memoized callback) to save function reference.
+ *
+ * ?useCallback gives you referential equality between renders for functions. And useMemo gives you referential equality between renders for values. useCallback and useMemo both expect a function and an array of dependencies. The difference is that useCallback returns its function when the dependencies change while useMemo calls its function and returns the result.
+ *
+ * ?useCallback returns its function uncalled so you can call it later, while useMemo calls its function and returns the result. useCallback returns its function uncalled so you can call it later, while useMemo calls its function and returns the result.
+ *
  */
 
 import React, { memo, useCallback, useMemo, useState } from "react"
