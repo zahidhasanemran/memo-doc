@@ -2,7 +2,7 @@
  * ! Use React.memo when props are primitive(string, boolean, number, etc) and use useMemo when props are object, array, function becasue for each render those create new instance or referrance and lost previous reference. useMemo memorized and provide exact same referance until the depency is changed. Don't use useMemo for a function that return primitive value.Best usecase can be filter data, costly calculation etc
  */
 
-import React, { memo, useMemo, useState } from "react"
+import React, { memo, useCallback, useMemo, useState } from "react"
 import "./App.css"
 
 type PropType = {
@@ -37,6 +37,7 @@ function App() {
   const [color, setColor] = useState("green")
 
   const memoedColor = useMemo(() => ({ color }), [color])
+  const memoedOnClick = useCallback(() => {}, [])
 
   console.log(`${count} Times = `, count)
 
@@ -48,7 +49,7 @@ function App() {
       <button onClick={() => setColor(color === "green" ? "orange" : "green")}>
         Color Change
       </button>
-      <MemoedSwap params={memoedColor} onClick={() => {}} />
+      <MemoedSwap params={memoedColor} onClick={memoedOnClick} />
     </div>
   )
 }
