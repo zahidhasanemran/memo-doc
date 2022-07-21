@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { memo, useState } from "react"
 import "./App.css"
 
 const Swamp = () => {
@@ -16,6 +16,8 @@ const Swamp = () => {
   )
 }
 
+const MemoedSwap = memo(Swamp)
+
 function App() {
   const [count, setCount] = useState(0)
 
@@ -25,7 +27,7 @@ function App() {
     <div className="App">
       <button onClick={() => setCount(count + 1)}>Click</button>
       <h2>{count}</h2>
-      <Swamp />
+      <MemoedSwap />
     </div>
   )
 }
