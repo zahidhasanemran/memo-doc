@@ -1,4 +1,4 @@
-import { memo, useState } from "react"
+import { memo, useMemo, useState } from "react"
 import "./App.css"
 
 type PropType = {
@@ -27,7 +27,9 @@ const MemoedSwap = memo(Swamp)
 
 function App() {
   const [count, setCount] = useState(0)
-  const [colour, setColour] = useState("green")
+  const [color, setColor] = useState("green")
+
+  const memoedColor = useMemo(() => ({ color }), [color])
 
   console.log(`${count} Times = `, count)
 
@@ -36,12 +38,10 @@ function App() {
       <button onClick={() => setCount(count + 1)}>Count</button>
       <h2>{count}</h2>
 
-      <button
-        onClick={() => setColour(colour === "green" ? "orange" : "green")}
-      >
+      <button onClick={() => setColor(color === "green" ? "orange" : "green")}>
         Color Change
       </button>
-      <MemoedSwap params={{ color: colour }} />
+      <MemoedSwap params={memoedColor} />
     </div>
   )
 }
