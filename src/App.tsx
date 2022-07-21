@@ -2,10 +2,12 @@ import { memo, useState } from "react"
 import "./App.css"
 
 type PropType = {
-  color: string
+  params: {
+    color: string
+  }
 }
 
-const Swamp = ({ color }: PropType) => {
+const Swamp = ({ params }: PropType) => {
   console.log("swamp")
 
   return (
@@ -13,7 +15,7 @@ const Swamp = ({ color }: PropType) => {
       style={{
         width: "100px",
         height: "100px",
-        background: color,
+        background: params?.color,
         margin: "0 auto",
       }}
     ></div>
@@ -38,7 +40,7 @@ function App() {
       >
         Color Change
       </button>
-      <MemoedSwap color={colour} />
+      <MemoedSwap params={{ color: colour }} />
     </div>
   )
 }
