@@ -22,7 +22,10 @@ const Swamp = ({ params }: PropType) => {
   )
 }
 
-const MemoedSwap = memo(Swamp)
+const MemoedSwap = memo(
+  Swamp,
+  (prevProps, nextProps) => prevProps.params.color === nextProps.params.color
+)
 
 function App() {
   const [count, setCount] = useState(0)
